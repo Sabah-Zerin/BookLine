@@ -3,7 +3,8 @@ const express = require('express');
 const connect_db = require('./connect/connect_db');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const AuthRouter = require('./routes/AuthRouter'); // Assuming this is for authentication routes
+const AuthRouter = require('./routes/AuthRouter');
+const PasswordResetRouter = require('./routes/PasswordResetRouter'); 
 
 require('dotenv').config();
 require('./models/db'); 
@@ -11,17 +12,15 @@ require('./models/db');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
 // Middleware
-app.use(cors())
+app.use(cors());
 app.use(bodyParser.json());
 
-
-
-
 // Routes
-app.use('/auth', AuthRouter); // Assuming AuthRouter handles authentication routes
-app.get("/",(req ,res)=> res.json({message:"Hello world"}))
+app.use('/auth', AuthRouter);
+app.use('/password-reset', PasswordResetRouter); // Add this line
+app.get("/", (req, res) => res.json({ message: "Hello world" }));
+
 // Connect to MongoDB
 connect_db()
   .then(() => {

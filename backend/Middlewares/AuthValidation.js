@@ -28,7 +28,33 @@ const loginValidation = (req, res, next) => {
     next();
 }
 
+const emailValidation = (req, res, next) => {
+    const schema = Joi.object({
+        email: Joi.string().email().required()
+    });
+
+    const { error } = schema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ message: "Bad request", error });
+    }
+    next();
+};
+
+const passwordValidation = (req, res, next) => {
+    const schema = Joi.object({
+        password: Joi.string().min(6).max(100).required()
+    });
+
+    const { error } = schema.validate(req.body);
+    if (error) {
+        return res.status(400).json({ message: "Bad request", error });
+    }
+    next();
+};
+
 module.exports = {
     signupValidation,
-    loginValidation
+    loginValidation,
+    emailValidation,
+    passwordValidation
 };

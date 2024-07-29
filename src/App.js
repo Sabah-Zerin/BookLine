@@ -9,6 +9,7 @@ import { AuthProvider, useAuth } from './AuthContext';
 
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import ForgotPassword from './pages/ForgotPassword'; // Import ForgotPassword
 import UserProfile from './pages/UserProfile';
 
 import FavoritesScreen from './FavoritesScreen'; 
@@ -166,6 +167,7 @@ function App() {
              <Route path='/aboutus' element={<AboutUs />} /> 
              <Route path='/contactus' element={<ContactUs />} />
             <Route path='/login' element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} /> {/* Add route */}
             <Route path='/signup' element={<Signup />} />
           </Routes>
         </div>
